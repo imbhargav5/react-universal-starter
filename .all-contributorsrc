@@ -1,0 +1,20 @@
+{
+  "projectName": "react16-router4-redux-universal",
+  "projectOwner": "imbhargav5",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": true,
+  "contributors": [
+    {
+      "login": "imbhargav5",
+      "name": "Bhargav Ponnapalli",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/2936644?v=4",
+      "profile": "http://github.com/imbhargav5",
+      "contributions": [
+        "code"
+      ]
+    }
+  ]
+}

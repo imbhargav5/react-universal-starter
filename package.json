@@ -2,10 +2,13 @@
   "dependencies": {
     "babel-preset-stage-0": "^6.24.1",
     "express": "^4.15.4",
+    "prop-types": "^15.5.10",
     "react": "next",
     "react-dom": "next",
+    "react-redux": "^5.0.6",
     "react-router": "next",
-    "react-router-dom": "next"
+    "react-router-dom": "next",
+    "redux": "^3.7.2"
   },
   "devDependencies": {
     "all-contributors-cli": "^4.4.0",

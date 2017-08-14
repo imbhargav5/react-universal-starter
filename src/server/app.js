@@ -26,7 +26,6 @@ if (!isDevelopment) {
 }
 
 // add routes
-
 app.get("*", (req, res) => {
   const context = {};
   const html = ReactDOMServer.renderToString(

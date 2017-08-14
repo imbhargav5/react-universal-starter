@@ -22,7 +22,7 @@ app.use(express.static(staticPath));
 //Root html template
 let indexFile = path.join(__dirname, "templates/index.dev.html");
 if (!isDevelopment) {
-  indexFile = path.join(__dirname, "templates/index.html");
+  indexFile = path.join(__dirname, "../../index.html");
 }
 
 // add routes

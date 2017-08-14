@@ -1,6 +1,16 @@
 # react16-router4-redux-universal
 [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors)
 
+## Features
+
+- [ ] React 16
+- [ ] React Router 4
+- [ ] Webpack 3
+- [ ] Server rendering
+- [ ] Redux integration
+- [ ] Dynamic imports
+
+
 ## Contributors
 
 Thanks goes to these wonderful people ([emoji key](https://github.com/kentcdodds/all-contributors#emoji-key)):

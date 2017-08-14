@@ -1,5 +1,7 @@
 import webpack from "webpack";
 import path from "path";
+import HtmlWebpackPlugin from "html-webpack-plugin";
+import CopyWebpackPlugin from "copy-webpack-plugin";
 
 export default env => {
   // utilities to add features based on env
@@ -13,7 +15,7 @@ export default env => {
 
   // set contentBase
   const contentBase = env.prod
-    ? __dirname + "/dist"
+    ? __dirname + "/dist/static"
     : __dirname + "/src/client";
 
   return {
@@ -24,7 +26,7 @@ export default env => {
       path.join(__dirname, "src/client/index.js")
     ]),
     output: {
-      path: path.join(__dirname, "dist"),
+      path: path.join(__dirname, "dist/static"),
       publicPath: env.prod ? "/" : "http://localhost:8080/",
       filename: env.prod ? "[name].[chunkhash].js" : "[name].bundle.js"
     },
@@ -44,6 +46,35 @@ export default env => {
         }
       ]
     },
-    plugins: removeEmpty([ifDev(new webpack.HotModuleReplacementPlugin())])
+    plugins: removeEmpty([
+      ifDev(new webpack.HotModuleReplacementPlugin()),
+      ifProd(
+        new HtmlWebpackPlugin({
+          title: "pubg",
+          filename: "index.html",
+          template: path.join(__dirname, "src/server/templates/index.prod.html")
+        })
+      ),
+      new webpack.optimize.CommonsChunkPlugin({
+        name: "vendor",
+        minChunks: function(module) {
+          // this assumes your vendor imports exist in the node_modules directory
+          return (
+            module.context && module.context.indexOf("node_modules") !== -1
+          );
+        }
+      }),
+      //CommonChunksPlugin will now extract all the common modules from vendor and main bundles
+      new webpack.optimize.CommonsChunkPlugin({
+        name: "manifest" //But since there are no more common modules between them we end up with just the runtime code included in the manifest file
+      }),
+      ifProd(
+        new CopyWebpackPlugin([
+          {
+            from: "static"
+          }
+        ])
+      )
+    ])
   };
 };

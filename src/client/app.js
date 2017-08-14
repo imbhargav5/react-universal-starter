@@ -1,10 +1,11 @@
 import { Route, Link } from "react-router-dom";
 import React, { Component } from "react";
 import { Provider } from "react-redux";
+import asyncComponent from "./async-component";
 
-import Home from "./containers/Home";
-import About from "./containers/About";
-import Counter from "./containers/Counter";
+const Home = asyncComponent(() => import("./containers/Home"));
+const About = asyncComponent(() => import("./containers/About"));
+const Counter = asyncComponent(() => import("./containers/Counter"));
 import store from "./store";
 
 export default class App extends Component {

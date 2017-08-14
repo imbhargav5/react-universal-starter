@@ -1,0 +1,34 @@
+{
+  "dependencies": {
+    "babel-preset-stage-0": "^6.24.1",
+    "express": "^4.15.4",
+    "react": "next",
+    "react-dom": "next",
+    "react-router": "^4.1.2"
+  },
+  "devDependencies": {
+    "babel-loader": "^7.1.1",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-register": "^6.24.1",
+    "nodemon": "^1.11.0",
+    "npm-run-all": "^4.0.2",
+    "react-hot-loader": "next",
+    "rimraf": "^2.6.1",
+    "webpack": "^3.5.4",
+    "webpack-dev-server": "^2.7.1"
+  },
+  "name": "react-routing-universal-new",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Bhargav Ponnapalli <bhargavponnapalli.5@gmail.com> (https://github.com/imbhargav5)",
+  "license": "MIT",
+  "scripts": {
+    "build": "webpack --env.prod",
+    "prebuild": "npm run clean",
+    "clean": "rimraf dist",
+    "start": "npm-run-all --parallel app:*",
+    "app:client": "webpack-dev-server --env.dev",
+    "app:server": "NODE_ENV=development nodemon --config nodemon.json src/server"
+  }
+}

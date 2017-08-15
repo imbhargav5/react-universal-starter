@@ -6,7 +6,7 @@ import Header from "./components/Header";
 import Core from "./components/Core";
 import Footer from "./components/Footer";
 import store from "./store";
-import { injectGlobal } from "styled-components";
+import styled, { injectGlobal } from "styled-components";
 
 // Global styles
 injectGlobal`
@@ -19,6 +19,10 @@ injectGlobal`
   }
 `;
 
+const Root = styled.div``;
+
+const RootMain = styled.div`min-height: 600px;`;
+
 // Fetch bundles
 const Home = bundle(() => import("./containers/Home"));
 const About = bundle(() => import("./containers/About"));
@@ -28,17 +32,19 @@ export default class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <div>
+        <Root>
           <Header />
-          <Core>
-            <Switch>
-              <Route exact path="/" component={Home} />
-              <Route exact path="/about" component={About} />
-              <Route exact path="/counter" component={Counter} />
-            </Switch>
-          </Core>
+          <RootMain>
+            <Core>
+              <Switch>
+                <Route exact path="/" component={Home} />
+                <Route exact path="/about" component={About} />
+                <Route exact path="/counter" component={Counter} />
+              </Switch>
+            </Core>
+          </RootMain>
           <Footer />
-        </div>
+        </Root>
       </Provider>
     );
   }

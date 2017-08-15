@@ -1,10 +1,11 @@
 import path from "path";
 import fs from "fs";
 import React from "react";
-import ReactDOMServer from "react-dom/server";
+import { renderToString } from "react-dom/server";
 import express from "express";
 import { StaticRouter as Router } from "react-router";
 import App from "../client/app";
+import { ServerStyleSheet } from "styled-components";
 
 // Environment variables
 const isDevelopment = process.env.NODE_ENV === "development";
@@ -28,10 +29,13 @@ if (!isDevelopment) {
 // add routes
 app.get("*", (req, res) => {
   const context = {};
-  const html = ReactDOMServer.renderToString(
-    <Router location={req.url} context={context}>
-      <App />
-    </Router>
+  const sheet = new ServerStyleSheet();
+  const html = renderToString(
+    sheet.collectStyles(
+      <Router location={req.url} context={context}>
+        <App />
+      </Router>
+    )
   );
   res.sendFile(indexFile);
 });

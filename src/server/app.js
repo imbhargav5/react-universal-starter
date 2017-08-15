@@ -37,6 +37,8 @@ app.get("*", (req, res) => {
       </Router>
     )
   );
+  // it will contain classnames
+  // console.log(html);
   res.sendFile(indexFile);
 });
 

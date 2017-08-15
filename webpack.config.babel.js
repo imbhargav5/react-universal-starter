@@ -34,7 +34,8 @@ export default env => {
       hot: true,
       publicPath: "http://localhost:8080/",
       contentBase: contentBase,
-      historyApiFallback: true
+      historyApiFallback: true,
+      headers: { "Access-Control-Allow-Origin": "*" }
     },
     module: {
       rules: [

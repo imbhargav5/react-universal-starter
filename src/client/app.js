@@ -1,11 +1,22 @@
-import { Route, Link } from "react-router-dom";
+import { Route, Link, Redirect, Switch } from "react-router-dom";
 import React, { Component } from "react";
 import { Provider } from "react-redux";
-import asyncComponent from "./async-component";
+import Bundle from "./bundle";
 
-const Home = asyncComponent(() => import("./containers/Home"));
-const About = asyncComponent(() => import("./containers/About"));
-const Counter = asyncComponent(() => import("./containers/Counter"));
+// components load their module for initial visit
+const Home = props =>
+  <Bundle load={() => import("./containers/Home/index.js")}>
+    {Home => <Home {...props} />}
+  </Bundle>;
+const About = props =>
+  <Bundle load={() => import("./containers/About/index.js")}>
+    {About => <About {...props} />}
+  </Bundle>;
+const Counter = props =>
+  <Bundle load={() => import("./containers/Counter/index.js")}>
+    {Counter => <Counter {...props} />}
+  </Bundle>;
+
 import store from "./store";
 
 export default class App extends Component {
@@ -21,12 +32,18 @@ export default class App extends Component {
               <Link to="/about">About</Link>
             </li>
             <li>
+              <Link to="/aboutus">About Us</Link>
+            </li>
+            <li>
               <Link to="/counter">Counter</Link>
             </li>
           </ul>
           <hr />
           <Route exact path="/" component={Home} />
-          <Route path="/about" component={About} />
+          <Switch>
+            <Redirect from={"/aboutus"} to="about" />
+            <Route path="/about" component={About} />
+          </Switch>
           <Route path="/counter" component={Counter} />
         </div>
       </Provider>

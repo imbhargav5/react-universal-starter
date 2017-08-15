@@ -1,15 +1,20 @@
 # react-universal-starter
 [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors)
 
+The popular front end stack today is changing fast with React, react-router and webpack releasing newer versions. This is a starter app aimed to demonstrate how to integrate `babel`, `react@16`,`react-router@4` and `webpack@3`.
+
 ## Features
 
-- [ ] React 16
-- [ ] React Router 4
-- [ ] Webpack 3
-- [ ] Server rendering
-- [ ] Redux integration
-- [ ] Dynamic imports
+This project comes with the following features
 
+- [x] React 16
+- [x] React Router 4
+- [x] Webpack 3
+- [ ] Server rendering
+- [x] Redux integration
+- [x] Dynamic imports
+- [x] Chunk splitting
+- [x] Styled components
 
 ## Contributors
 

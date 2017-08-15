@@ -33,7 +33,6 @@ app.get("*", (req, res) => {
       <App />
     </Router>
   );
-  console.log(context);
   res.sendFile(indexFile);
 });
 

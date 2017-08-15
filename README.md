@@ -1,4 +1,4 @@
-# react-universal-hackathon-starter
+# react-universal-starter
 [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors)
 
 ## Features

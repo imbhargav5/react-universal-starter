@@ -29,7 +29,7 @@
     "webpack": "^3.5.4",
     "webpack-dev-server": "^2.7.1"
   },
-  "name": "react-universal-hackathon-starter",
+  "name": "react-universal-starter",
   "version": "1.0.0",
   "main": "index.js",
   "author": "Bhargav Ponnapalli <bhargavponnapalli.5@gmail.com> (https://github.com/imbhargav5)",

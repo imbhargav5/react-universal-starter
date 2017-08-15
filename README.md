@@ -1,4 +1,4 @@
-# react16-router4-redux-universal
+# react-universal-hackathon-starter
 [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors)
 
 ## Features

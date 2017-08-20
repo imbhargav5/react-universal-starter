@@ -19,7 +19,7 @@ This project comes with the following features
 - [x] React Router 4
 - [x] Webpack 3
 - [x] Babel
-- [ ] Server rendering
+- [x] Server rendering
 - [x] Redux integration
 - [x] Dynamic imports
 - [x] Chunk splitting

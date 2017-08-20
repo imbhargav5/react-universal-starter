@@ -20,10 +20,19 @@ const port = process.env.PORT || 8888;
 const staticPath = path.join(__dirname, "../../", "static");
 app.use(express.static(staticPath));
 
+// set view engine
+app.set("view engine", "pug");
+// set views directory
+if (isDevelopment) {
+  app.set("views", path.join(__dirname, "templates"));
+} else {
+  app.set("views", path.join(__dirname, "../../", "static/templates"));
+}
+
 //Root html template
-let indexFile = path.join(__dirname, "templates/index.dev.html");
+let indexTemplate = "index.dev.pug";
 if (!isDevelopment) {
-  indexFile = path.join(__dirname, "../../index.html");
+  indexTemplate = "index";
 }
 
 // add routes
@@ -37,9 +46,12 @@ app.get("*", (req, res) => {
       </Router>
     )
   );
-  // it will contain classnames
-  // console.log(html);
-  res.sendFile(indexFile);
+  const styleTags = sheet.getStyleTags();
+  // This renders html as well as a concatenated string list of style tags
+  res.render(indexTemplate, {
+    content: html,
+    styles: styleTags
+  });
 });
 
 // start app

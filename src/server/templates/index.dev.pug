@@ -1,0 +1,13 @@
+doctype html
+html
+    head
+        meta(charset="utf-8")
+        title Summer
+        link(rel="shortcut icon", type="image/png", href="/logo.png")
+        link(rel="shortcut icon", type="image/png", href="http://localhost:8888/favicon.png")
+        != styles
+    body
+        #app!=content
+        script(src="http://localhost:8080/manifest.bundle.js", charset="utf-8")
+        script(src="http://localhost:8080/vendor.bundle.js", charset="utf-8")
+        script(src="http://localhost:8080/main.bundle.js", charset="utf-8")

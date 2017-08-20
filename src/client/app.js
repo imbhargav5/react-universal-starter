@@ -27,6 +27,7 @@ const RootMain = styled.div`min-height: 600px;`;
 const Home = bundle(() => import("./containers/Home"));
 const About = bundle(() => import("./containers/About"));
 const Counter = bundle(() => import("./containers/Counter"));
+const NotFoundPage = bundle(() => import("./containers/NotFound"));
 
 export default class App extends Component {
   render() {
@@ -40,6 +41,7 @@ export default class App extends Component {
                 <Route exact path="/" component={Home} />
                 <Route exact path="/about" component={About} />
                 <Route exact path="/counter" component={Counter} />
+                <Route component={NotFoundPage} />
               </Switch>
             </Core>
           </RootMain>

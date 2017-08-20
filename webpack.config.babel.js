@@ -1,5 +1,6 @@
 import webpack from "webpack";
 import path from "path";
+import HtmlWebpackPugPlugin from "html-webpack-pug-plugin";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import CopyWebpackPlugin from "copy-webpack-plugin";
 
@@ -51,11 +52,12 @@ export default env => {
       ifDev(new webpack.HotModuleReplacementPlugin()),
       ifProd(
         new HtmlWebpackPlugin({
-          title: "pubg",
-          filename: "index.html",
-          template: path.join(__dirname, "src/server/templates/index.prod.html")
+          title: "Summer",
+          filename: "templates/index.pug",
+          template: path.join(__dirname, "src/server/templates/index.prod.pug")
         })
       ),
+      ifProd(new HtmlWebpackPugPlugin()),
       new webpack.optimize.CommonsChunkPlugin({
         name: "vendor",
         minChunks: function(module) {

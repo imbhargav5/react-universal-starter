@@ -6,6 +6,9 @@ import Header from "./components/Header";
 import Core from "./components/Core";
 import Footer from "./components/Footer";
 import store from "./store";
+import Home from "./containers/Home";
+import About from "./containers/About";
+import NotFoundPage from "./containers/NotFound";
 import styled, { injectGlobal } from "styled-components";
 
 // Global styles
@@ -24,10 +27,10 @@ const Root = styled.div``;
 const RootMain = styled.div`min-height: 600px;`;
 
 // Fetch bundles
-const Home = bundle(() => import("./containers/Home"));
-const About = bundle(() => import("./containers/About"));
+// Dynamic imports
+// These components don't have server rendering at the moment
+// TO-DO : Add server rendering if possible
 const Counter = bundle(() => import("./containers/Counter"));
-const NotFoundPage = bundle(() => import("./containers/NotFound"));
 
 export default class App extends Component {
   render() {

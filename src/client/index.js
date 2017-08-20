@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
-import { render } from "react-dom";
+// hydrate is responsible for server rendering going forward
+import { hydrate as render } from "react-dom";
 import App from "./app";
 
 render(

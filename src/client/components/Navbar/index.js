@@ -10,7 +10,7 @@ const Nav = styled.div`
 const NavItem = styled.div`
   padding: 10px;
   margin-right: 5px;
-  font-size: 2em;
+  font-size: 1.5em;
   ${StyledLink} {
     font-weight: bold;
     color: #515f71;
@@ -35,6 +35,17 @@ class Navbar extends Component {
           </NavItem>
           <NavItem>
             <StyledLink to="/counter">Counter</StyledLink>
+          </NavItem>
+          <NavItem>
+            <StyledLink to="/500">500</StyledLink>
+          </NavItem>
+          <NavItem>
+            <StyledLink to="/401">401</StyledLink>
+          </NavItem>
+          <NavItem>
+            <StyledLink to="/some-route-which-does-not-exist">
+              Not Found
+            </StyledLink>
           </NavItem>
         </Nav>
       </div>

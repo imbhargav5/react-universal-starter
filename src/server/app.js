@@ -35,9 +35,9 @@ if (!isDevelopment) {
   indexTemplate = "index";
 }
 
-// add routes
-app.get("*", (req, res) => {
-  const context = {};
+const context = {};
+
+function render(req, res, err) {
   const sheet = new ServerStyleSheet();
   const html = renderToString(
     sheet.collectStyles(
@@ -52,7 +52,23 @@ app.get("*", (req, res) => {
     content: html,
     styles: styleTags
   });
+}
+
+// add routes
+app.get("/throw", (req, res, next) => {
+  next(new Error("we messed up"));
 });
+
+app.get("*", (req, res) => {
+  render(req, res);
+});
+
+if (isDevelopment) {
+  app.use(function(err, req, res, next) {
+    res.status(err.status || 500);
+    res.redirect("/500");
+  });
+}
 
 // start app
 app.listen(port, () => {

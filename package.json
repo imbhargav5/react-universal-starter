@@ -45,7 +45,7 @@
     "prebuild": "npm run clean",
     "clean": "rimraf dist lib",
     "dev": "npm-run-all --parallel dev:*",
-    "dev:client": "cross-env webpack-dev-server --env.dev",
+    "dev:client": "cross-env NODE_ENV=development webpack-dev-server --env.dev",
     "dev:server": "cross-env NODE_ENV=development nodemon --config nodemon.json src/server",
     "start": "cross-env NODE_ENV=production node dist/lib/server",
     "prestart": "npm run build"

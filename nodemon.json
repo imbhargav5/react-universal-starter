@@ -1,8 +1,8 @@
 {
   "verbose": true,
-  "ignore": ["src/client", "dist"],
+  "ignore": ["dist"],
   "execMap": {
     "js": "babel-node"
   },
-  "watch": false
+  "watch": ["src"]
 }

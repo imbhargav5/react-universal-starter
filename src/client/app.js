@@ -5,6 +5,7 @@ import bundle from "./bundle";
 import Header from "./components/Header";
 import Core from "./components/Core";
 import Footer from "./components/Footer";
+import FadeIn from "./components/FadeIn";
 import store from "./store";
 import Home from "./containers/Home";
 import About from "./containers/About";
@@ -44,6 +45,16 @@ const RedirectWithStatus = ({ from, to }) =>
     }}
   />;
 
+// A component to render a fading Route
+const FadingRoute = ({ component: Component, ...rest }) =>
+  <Route
+    {...rest}
+    render={props =>
+      <FadeIn>
+        <Component {...props} />
+      </FadeIn>}
+  />;
+
 export default class App extends Component {
   render() {
     return (
@@ -53,7 +64,7 @@ export default class App extends Component {
           <RootMain>
             <Core>
               <Switch>
-                <Route exact path="/" component={Home} />
+                <FadingRoute exact path="/" component={Home} />
                 <Route exact path="/about" component={About} />
                 <Route exact path="/counter" component={Counter} />
                 <RedirectWithStatus

@@ -1,6 +1,6 @@
 {
   "verbose": true,
-  "ignore": ["dist"],
+  "ignore": ["tmp"],
   "execMap": {
     "js": "babel-node"
   },

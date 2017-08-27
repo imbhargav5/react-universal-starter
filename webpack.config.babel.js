@@ -16,7 +16,7 @@ export default env => {
 
   // set contentBase
   const contentBase = env.prod
-    ? __dirname + "/dist/static"
+    ? __dirname + "/tmp/static"
     : __dirname + "/src/client";
 
   return {
@@ -27,7 +27,7 @@ export default env => {
       path.join(__dirname, "src/client/index.js")
     ]),
     output: {
-      path: path.join(__dirname, "dist/static"),
+      path: path.join(__dirname, "tmp/static"),
       publicPath: env.prod ? "/" : "http://localhost:8080/",
       filename: env.prod ? "[name].[chunkhash].js" : "[name].bundle.js"
     },

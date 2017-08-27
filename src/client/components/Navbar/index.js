@@ -13,7 +13,8 @@ const NavItem = styled.div`
   font-size: 1.5em;
   ${StyledLink} {
     font-weight: bold;
-    color: #515f71;
+    color: ${props => (props.active ? "#46b0ed" : "#515f71")};
+    transition: color 1s ease;
   }
 `;
 
@@ -22,31 +23,30 @@ const StyledLink = styled(Link)`
   color: inherit;
 `;
 
+const NavLink = ({ to, ...rest }) =>
+  <Route
+    path={to}
+    children={({ match }) => {
+      console.log(match);
+      return (
+        <NavItem active={match && match.isExact}>
+          <StyledLink to={to} {...rest} />
+        </NavItem>
+      );
+    }}
+  />;
+
 class Navbar extends Component {
   render() {
     return (
       <div>
         <Nav>
-          <NavItem>
-            <StyledLink to="/">Home</StyledLink>
-          </NavItem>
-          <NavItem>
-            <StyledLink to="/about">About</StyledLink>
-          </NavItem>
-          <NavItem>
-            <StyledLink to="/counter">Counter</StyledLink>
-          </NavItem>
-          <NavItem>
-            <StyledLink to="/500">500</StyledLink>
-          </NavItem>
-          <NavItem>
-            <StyledLink to="/401">401</StyledLink>
-          </NavItem>
-          <NavItem>
-            <StyledLink to="/some-route-which-does-not-exist">
-              Not Found
-            </StyledLink>
-          </NavItem>
+          <NavLink to="/">Home</NavLink>
+          <NavLink to="/about">About</NavLink>
+          <NavLink to="/counter">Counter</NavLink>
+          <NavLink to="/500">500</NavLink>
+          <NavLink to="/401">401</NavLink>
+          <NavLink to="/some-route-which-does-not-exist">Not Found</NavLink>
         </Nav>
       </div>
     );

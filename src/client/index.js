@@ -3,11 +3,15 @@ import { BrowserRouter } from "react-router-dom";
 // hydrate is responsible for server rendering going forward
 import { hydrate as render } from "react-dom";
 import App from "./app";
+import { Provider } from "react-redux";
+import store from "./store";
 
 render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>,
+  <Provider store={store}>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </Provider>,
   document.getElementById("app")
 );
 

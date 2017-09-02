@@ -1,13 +1,11 @@
 import React, { Component } from "react";
 import { Route, Redirect, Switch } from "react-router-dom";
 import PropTypes from "prop-types";
-import { Provider } from "react-redux";
 import bundle from "./bundle";
 import Header from "./components/Header";
 import Core from "./components/Core";
 import Footer from "./components/Footer";
 import FadeIn from "./components/FadeIn";
-import store from "./store";
 import Home from "./containers/Home";
 import About from "./containers/About";
 import NotFoundPage from "./containers/NotFound";
@@ -106,43 +104,41 @@ FadingRoute.propTypes = {
 export default class App extends Component {
   render() {
     return (
-      <Provider store={store}>
-        <Root>
-          <RootMain>
-            <Sidebar>
-              <StyledHeader />
-              <StyledFooter />
-            </Sidebar>
-            <StyledCore>
-              <Switch>
-                <FadingRoute exact path="/" component={Home} />
-                <Route exact path="/about" component={About} />
-                <Route exact path="/counter" component={Counter} />
-                <RedirectWithStatus
-                  from="/500"
-                  to={{
-                    pathname: "error",
-                    state: {
-                      status: 500
-                    }
-                  }}
-                />
-                <RedirectWithStatus
-                  from="/401"
-                  to={{
-                    pathname: "error",
-                    state: {
-                      status: 401
-                    }
-                  }}
-                />
-                <Route exact path="/error" component={ServerError} />
-                <Route component={NotFoundPage} />
-              </Switch>
-            </StyledCore>
-          </RootMain>
-        </Root>
-      </Provider>
+      <Root>
+        <RootMain>
+          <Sidebar>
+            <StyledHeader />
+            <StyledFooter />
+          </Sidebar>
+          <StyledCore>
+            <Switch>
+              <FadingRoute exact path="/" component={Home} />
+              <Route exact path="/about" component={About} />
+              <Route exact path="/counter" component={Counter} />
+              <RedirectWithStatus
+                from="/500"
+                to={{
+                  pathname: "error",
+                  state: {
+                    status: 500
+                  }
+                }}
+              />
+              <RedirectWithStatus
+                from="/401"
+                to={{
+                  pathname: "error",
+                  state: {
+                    status: 401
+                  }
+                }}
+              />
+              <Route exact path="/error" component={ServerError} />
+              <Route component={NotFoundPage} />
+            </Switch>
+          </StyledCore>
+        </RootMain>
+      </Root>
     );
   }
 }

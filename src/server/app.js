@@ -1,11 +1,13 @@
 import path from "path";
-import fs from "fs";
 import React from "react";
 import { renderToString } from "react-dom/server";
 import express from "express";
 import { StaticRouter as Router } from "react-router";
-import App from "../client/app";
+import { Provider } from "react-redux";
 import { ServerStyleSheet } from "styled-components";
+import App from "../client/app";
+import createStore from "../client/store/createStore";
+import rootReducer from "../client/reducers";
 
 // Environment variables
 const isDevelopment = process.env.NODE_ENV === "development";
@@ -39,13 +41,24 @@ const context = {};
 
 function render(req, res, err) {
   const sheet = new ServerStyleSheet();
-  const html = renderToString(
+  // setting counter initial value to 5
+  const store = createStore(rootReducer, {
+    counter: 5
+  });
+  let html = renderToString(
     sheet.collectStyles(
-      <Router location={req.url} context={context}>
-        <App />
-      </Router>
+      <Provider store={store}>
+        <Router location={req.url} context={context}>
+          <App />
+        </Router>
+      </Provider>
     )
   );
+  html += `
+    <script>
+      var __PRELOADED_STATE__ = ${JSON.stringify(store.getState())}
+    </script>
+  `;
   const styleTags = sheet.getStyleTags();
   // This renders html as well as a concatenated string list of style tags
   res.render(indexTemplate, {

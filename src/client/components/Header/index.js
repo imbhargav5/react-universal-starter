@@ -1,6 +1,7 @@
-import React, { Component } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
-import { CentredContainer as Container } from "../BlockContainer";
+import Container from "../BlockContainer";
 import Navbar from "../Navbar";
 
 const Outer = styled.div`
@@ -8,17 +9,24 @@ const Outer = styled.div`
   padding-bottom: 1em;
 `;
 
-const Inner = styled.div`text-align: left;`;
+const Inner = styled.div`
+  text-align: left;
+  border-bottom: 1px dashed black;
+  margin-bottom: 1em;
+  padding: 1em 0;
+`;
+
 const Box = styled.div`
   display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: flex-start;
 `;
+
 const Heading = styled.h1`
   color: #303233;
-  font-size: 3em;
+  font-size: 2em;
   padding: 0;
-  margin: 0;
+  margin: 0 0 16px;
   line-height: 1;
 `;
 
@@ -39,23 +47,20 @@ const BuiltWith = styled.p`
   margin-bottom: 0;
 `;
 
-class Header extends Component {
-  render() {
-    return (
-      <Outer>
-        <Container>
-          <Box>
-            <Inner>
-              <Heading> Summer </Heading>
-              <Subheading>For the ever evolving front end stack</Subheading>
-            </Inner>
-            <Navbar />
-          </Box>
-          <BuiltWith>React 16+, React Router 4+, Webpack 3+</BuiltWith>
-        </Container>
-      </Outer>
-    );
-  }
-}
-
+const Header = ({ className }) =>
+  <Outer className={className}>
+    <Container>
+      <Box>
+        <Inner>
+          <Heading> React Starter </Heading>
+          <Subheading>For the ever evolving front end stack</Subheading>
+        </Inner>
+        <Navbar />
+      </Box>
+      <BuiltWith>React 16+, React Router 4+, Webpack 3+</BuiltWith>
+    </Container>
+  </Outer>;
+Header.propTypes = {
+  className: PropTypes.string
+};
 export default Header;

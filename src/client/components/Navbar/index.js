@@ -4,13 +4,14 @@ import styled from "styled-components";
 
 const Nav = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
 `;
 
 const NavItem = styled.div`
-  padding: 10px;
+  padding: 10px 10px 10px 0;
   margin-right: 5px;
-  font-size: 1.5em;
+  font-size: 1em;
   ${StyledLink} {
     font-weight: bold;
     color: ${props => (props.active ? "#46b0ed" : "#515f71")};

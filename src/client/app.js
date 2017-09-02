@@ -1,5 +1,6 @@
-import { Route, Link, Redirect, Switch } from "react-router-dom";
 import React, { Component } from "react";
+import { Route, Redirect, Switch } from "react-router-dom";
+import PropTypes from "prop-types";
 import { Provider } from "react-redux";
 import bundle from "./bundle";
 import Header from "./components/Header";
@@ -16,17 +17,56 @@ import styled, { injectGlobal } from "styled-components";
 // Global styles
 injectGlobal`
   @import url('https://fonts.googleapis.com/css?family=Montserrat');
-
+  *{
+    box-sizing: border-box;
+  }
+  html, body{
+    height : 100%;
+  }
   body {
     margin: 0;
     font-size: 16px;
     font-family: 'Montserrat', sans-serif;
+    height : 100%;
+  }
+  #app {
+    height : 100%;
   }
 `;
 
-const Root = styled.div``;
+const Sidebar = styled.div`
+  flex: 0 0 240px;
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+const StyledHeader = styled(Header)`
+  align-content: flex-start;
+`;
 
-const RootMain = styled.div`min-height: 600px;`;
+const StyledFooter = styled(Footer)`
+  align-content: flex-end;
+  text-align: left;
+  padding-left: 0;
+`;
+
+const StyledCore = styled(Core)`
+  flex : 1;
+  height: 100%;
+`;
+
+const Root = styled.div`
+  height: 100%;
+  width: 100%;
+`;
+
+const RootMain = styled.div`
+  display: flex;
+  min-height: 600px;
+  height: 100%;
+`;
 
 // Fetch bundles
 // Dynamic imports
@@ -45,6 +85,11 @@ const RedirectWithStatus = ({ from, to }) =>
     }}
   />;
 
+RedirectWithStatus.propTypes = {
+  from: PropTypes.any,
+  to: PropTypes.any
+};
+
 // A component to render a fading Route
 const FadingRoute = ({ component: Component, ...rest }) =>
   <Route
@@ -54,15 +99,21 @@ const FadingRoute = ({ component: Component, ...rest }) =>
         <Component {...props} />
       </FadeIn>}
   />;
+FadingRoute.propTypes = {
+  component: PropTypes.any
+};
 
 export default class App extends Component {
   render() {
     return (
       <Provider store={store}>
         <Root>
-          <Header />
           <RootMain>
-            <Core>
+            <Sidebar>
+              <StyledHeader />
+              <StyledFooter />
+            </Sidebar>
+            <StyledCore>
               <Switch>
                 <FadingRoute exact path="/" component={Home} />
                 <Route exact path="/about" component={About} />
@@ -88,9 +139,8 @@ export default class App extends Component {
                 <Route exact path="/error" component={ServerError} />
                 <Route component={NotFoundPage} />
               </Switch>
-            </Core>
+            </StyledCore>
           </RootMain>
-          <Footer />
         </Root>
       </Provider>
     );

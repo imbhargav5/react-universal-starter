@@ -31,6 +31,7 @@ export default env => {
       publicPath: env.prod ? "/" : "http://localhost:8080/",
       filename: env.prod ? "[name].[chunkhash].js" : "[name].bundle.js"
     },
+    devtool: env.dev ? "eval-source-map" : "eval",
     devServer: {
       hot: true,
       publicPath: "http://localhost:8080/",

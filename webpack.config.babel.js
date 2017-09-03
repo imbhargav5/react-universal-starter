@@ -31,6 +31,7 @@ export default env => {
       publicPath: env.prod ? "/" : "http://localhost:8080/",
       filename: env.prod ? "[name].[chunkhash].js" : "[name].bundle.js"
     },
+    devtool: env.dev ? "eval-source-map" : "eval",
     devServer: {
       hot: true,
       publicPath: "http://localhost:8080/",
@@ -71,6 +72,7 @@ export default env => {
       new webpack.optimize.CommonsChunkPlugin({
         name: "manifest" //But since there are no more common modules between them we end up with just the runtime code included in the manifest file
       }),
+      new webpack.optimize.ModuleConcatenationPlugin(),
       ifProd(
         new CopyWebpackPlugin([
           {

@@ -28,7 +28,6 @@ const NavLink = ({ to, ...rest }) =>
   <Route
     path={to}
     children={({ match }) => {
-      console.log(match);
       return (
         <NavItem active={match && match.isExact}>
           <StyledLink to={to} {...rest} />

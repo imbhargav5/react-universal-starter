@@ -49,7 +49,7 @@ export function fetchGithubUsers() {
       return;
     }
     dispatch(fetchingGithubUsers());
-    return fetch("http://api.github.com/users")
+    return fetch("https://api.github.com/users")
       .then(data => data.json())
       .then(data => {
         return dispatch(fetchedGithubUsers(data));

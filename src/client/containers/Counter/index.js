@@ -1,4 +1,3 @@
-import React, { Component } from "react";
 import CounterComponent from "./components";
 import { connect } from "react-redux";
 import { incrementCounter, decrementCounter } from "../../actions";

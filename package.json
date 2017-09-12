@@ -2,6 +2,7 @@
   "dependencies": {
     "babel-preset-stage-0": "^6.24.1",
     "express": "^4.15.4",
+    "isomorphic-fetch": "^2.2.1",
     "prop-types": "^15.5.10",
     "pug": "^2.0.0-rc.3",
     "react": "next",
@@ -10,6 +11,7 @@
     "react-router": "next",
     "react-router-dom": "next",
     "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0",
     "styled-components": "^2.1.2"
   },
   "devDependencies": {
@@ -36,7 +38,8 @@
   "name": "react-universal-starter",
   "version": "1.0.0",
   "main": "index.js",
-  "author": "Bhargav Ponnapalli <bhargavponnapalli.5@gmail.com> (https://github.com/imbhargav5)",
+  "author":
+    "Bhargav Ponnapalli <bhargavponnapalli.5@gmail.com> (https://github.com/imbhargav5)",
   "license": "MIT",
   "scripts": {
     "add-contributor": "all-contributors add",
@@ -48,7 +51,9 @@
     "clean": "rimraf tmp lib",
     "dev": "npm-run-all --parallel dev:*",
     "dev:client": "cross-env NODE_ENV=development webpack-dev-server --env.dev",
-    "dev:server": "cross-env NODE_ENV=development nodemon --config nodemon.json src/server",
-    "start": "cross-env NODE_ENV=production node tmp/lib/server"
+    "dev:server":
+      "cross-env NODE_ENV=development nodemon --config nodemon.json src/server",
+    "start": "cross-env NODE_ENV=production node tmp/lib/server",
+    "deploy": "now --public"
   }
 }

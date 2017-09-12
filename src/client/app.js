@@ -8,8 +8,10 @@ import Footer from "./components/Footer";
 import FadeIn from "./components/FadeIn";
 import Home from "./containers/Home";
 import About from "./containers/About";
+import GithubUsers from "./containers/GithubUsers";
 import NotFoundPage from "./containers/NotFound";
 import ServerError from "./containers/ServerError";
+import { LoadGithubUsers } from "./dataloading";
 import styled, { injectGlobal } from "styled-components";
 
 // Global styles
@@ -40,9 +42,7 @@ const Sidebar = styled.div`
   flex-direction: column;
   justify-content: space-between;
 `;
-const StyledHeader = styled(Header)`
-  align-content: flex-start;
-`;
+const StyledHeader = styled(Header)`align-content: flex-start;`;
 
 const StyledFooter = styled(Footer)`
   align-content: flex-end;
@@ -51,7 +51,7 @@ const StyledFooter = styled(Footer)`
 `;
 
 const StyledCore = styled(Core)`
-  flex : 1;
+  flex: 1;
   height: 100%;
 `;
 
@@ -73,7 +73,7 @@ const RootMain = styled.div`
 const Counter = bundle(() => import("./containers/Counter"));
 
 // A component to Redirect from a status code
-const RedirectWithStatus = ({ from, to }) =>
+const RedirectWithStatus = ({ from, to }) => (
   <Route
     render={({ staticContext }) => {
       // there is no `staticContext` on the client, so
@@ -81,7 +81,8 @@ const RedirectWithStatus = ({ from, to }) =>
       if (staticContext) staticContext.status = to.state.status;
       return <Redirect from={from} to={to} />;
     }}
-  />;
+  />
+);
 
 RedirectWithStatus.propTypes = {
   from: PropTypes.any,
@@ -89,17 +90,27 @@ RedirectWithStatus.propTypes = {
 };
 
 // A component to render a fading Route
-const FadingRoute = ({ component: Component, ...rest }) =>
+const FadingRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
-    render={props =>
+    render={props => (
       <FadeIn>
         <Component {...props} />
-      </FadeIn>}
-  />;
+      </FadeIn>
+    )}
+  />
+);
 FadingRoute.propTypes = {
   component: PropTypes.any
 };
+
+export const loadData = [
+  {
+    path: "/github-users",
+    exact: true,
+    loadData: LoadGithubUsers
+  }
+];
 
 export default class App extends Component {
   render() {
@@ -115,6 +126,7 @@ export default class App extends Component {
               <FadingRoute exact path="/" component={Home} />
               <Route exact path="/about" component={About} />
               <Route exact path="/counter" component={Counter} />
+              <Route exact path="/github-users" component={GithubUsers} />
               <RedirectWithStatus
                 from="/500"
                 to={{

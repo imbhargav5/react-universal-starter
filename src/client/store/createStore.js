@@ -1,7 +1,8 @@
 import { applyMiddleware, compose, createStore } from "redux";
+import ReduxThunk from "redux-thunk";
 
 export default function(rootReducer, preloadedState) {
-  const middlewares = [];
+  const middlewares = [ReduxThunk];
   const store = createStore(
     rootReducer,
     preloadedState,

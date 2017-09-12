@@ -24,7 +24,7 @@ const StyledLink = styled(Link)`
   color: inherit;
 `;
 
-const NavLink = ({ to, ...rest }) =>
+const NavLink = ({ to, ...rest }) => (
   <Route
     path={to}
     children={({ match }) => {
@@ -34,7 +34,8 @@ const NavLink = ({ to, ...rest }) =>
         </NavItem>
       );
     }}
-  />;
+  />
+);
 
 class Navbar extends Component {
   render() {
@@ -44,6 +45,7 @@ class Navbar extends Component {
           <NavLink to="/">Home</NavLink>
           <NavLink to="/about">About</NavLink>
           <NavLink to="/counter">Counter</NavLink>
+          <NavLink to="/github-users">Popular Github Users</NavLink>
           <NavLink to="/500">500</NavLink>
           <NavLink to="/401">401</NavLink>
           <NavLink to="/some-route-which-does-not-exist">Not Found</NavLink>

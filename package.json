@@ -54,6 +54,6 @@
     "dev:server":
       "cross-env NODE_ENV=development nodemon --config nodemon.json src/server",
     "start": "cross-env NODE_ENV=production node tmp/lib/server",
-    "deploy": "npm run build && now --public"
+    "deploy": "now --public"
   }
 }

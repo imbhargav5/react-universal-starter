@@ -3,9 +3,10 @@ import React from "react";
 import { renderToString } from "react-dom/server";
 import express from "express";
 import { StaticRouter as Router } from "react-router";
+import { matchPath } from "react-router-dom";
 import { Provider } from "react-redux";
 import { ServerStyleSheet } from "styled-components";
-import App from "../client/app";
+import App, { loadData } from "../client/app";
 import createStore from "../client/store/createStore";
 import rootReducer from "../client/reducers";
 
@@ -40,30 +41,44 @@ if (!isDevelopment) {
 const context = {};
 
 function render(req, res, err) {
-  const sheet = new ServerStyleSheet();
   // setting counter initial value to 5
   const store = createStore(rootReducer, {
     counter: 5
   });
-  let html = renderToString(
-    sheet.collectStyles(
-      <Provider store={store}>
-        <Router location={req.url} context={context}>
-          <App />
-        </Router>
-      </Provider>
-    )
-  );
-  html += `
-    <script>
-      var __PRELOADED_STATE__ = ${JSON.stringify(store.getState())}
-    </script>
-  `;
-  const styleTags = sheet.getStyleTags();
-  // This renders html as well as a concatenated string list of style tags
-  res.render(indexTemplate, {
-    content: html,
-    styles: styleTags
+  const promises = [];
+  loadData.some(route => {
+    // use `matchPath` here
+    const match = matchPath(req.path, route);
+    if (match) {
+      if (route.loadData) {
+        promises.push(route.loadData(store, match, req.url));
+      }
+    }
+    return match;
+  });
+  Promise.all(promises).then(() => {
+    const sheet = new ServerStyleSheet();
+    let html = renderToString(
+      sheet.collectStyles(
+        <Provider store={store}>
+          <Router location={req.url} context={context}>
+            <App />
+          </Router>
+        </Provider>
+      )
+    );
+
+    html += `
+      <script>
+        var __PRELOADED_STATE__ = ${JSON.stringify(store.getState())}
+      </script>
+    `;
+    const styleTags = sheet.getStyleTags();
+    // This renders html as well as a concatenated string list of style tags
+    res.render(indexTemplate, {
+      content: html,
+      styles: styleTags
+    });
   });
 }
 

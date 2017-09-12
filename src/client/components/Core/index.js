@@ -7,17 +7,17 @@ const Inner = styled.div`padding: 1em 0em;`;
 const Outer = styled.div`
   background-color: #f9f9f9;
   padding: 1em 0;
-  min-height: inherit;
+  height: 100%;
+  overflow: auto;
 `;
 
-const Core = ({ className, children }) =>
+const Core = ({ className, children }) => (
   <Outer className={className}>
     <Container>
-      <Inner>
-        {children}
-      </Inner>
+      <Inner>{children}</Inner>
     </Container>
-  </Outer>;
+  </Outer>
+);
 Core.propTypes = {
   className: PropTypes.string,
   children: PropTypes.any

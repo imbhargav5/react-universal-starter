@@ -2,6 +2,7 @@
   "dependencies": {
     "babel-preset-stage-0": "^6.24.1",
     "express": "^4.15.4",
+    "isomorphic-fetch": "^2.2.1",
     "prop-types": "^15.5.10",
     "pug": "^2.0.0-rc.3",
     "react": "next",
@@ -10,6 +11,7 @@
     "react-router": "next",
     "react-router-dom": "next",
     "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0",
     "styled-components": "^2.1.2"
   },
   "devDependencies": {

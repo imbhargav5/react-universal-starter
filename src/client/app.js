@@ -14,7 +14,8 @@ import ServerError from "./containers/ServerError";
 import { LoadGithubUsers } from "./dataloading";
 import styled, { injectGlobal } from "styled-components";
 
-// Global styles
+//========================
+// GLOBAL STYLES
 injectGlobal`
   @import url('https://fonts.googleapis.com/css?family=Montserrat');
   *{
@@ -33,7 +34,10 @@ injectGlobal`
     height : 100%;
   }
 `;
+//========================
 
+//========================
+// STYLED COMPONENTS
 const Sidebar = styled.div`
   flex: 0 0 240px;
   overflow: hidden;
@@ -65,14 +69,20 @@ const RootMain = styled.div`
   min-height: 600px;
   height: 100%;
 `;
+//========================
 
-// Fetch bundles
+//========================
+// FETCH BUNDLES
 // Dynamic imports
 // These components don't have server rendering at the moment
 // TO-DO : Add server rendering if possible
 const Counter = bundle(() => import("./containers/Counter"));
 
+//========================
+// RedirectWithStatus
 // A component to Redirect from a status code
+// It sets a context key called status, which the server can read from the context
+// and respond accordingly
 const RedirectWithStatus = ({ from, to }) => (
   <Route
     render={({ staticContext }) => {
@@ -83,13 +93,17 @@ const RedirectWithStatus = ({ from, to }) => (
     }}
   />
 );
-
 RedirectWithStatus.propTypes = {
   from: PropTypes.any,
   to: PropTypes.any
 };
+//========================
 
+//========================
+// Fading Route
 // A component to render a fading Route
+// We take advantage of the "render" method of the Route component
+// to have a much smaller boiler plate for FadingRoute component
 const FadingRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
@@ -103,7 +117,19 @@ const FadingRoute = ({ component: Component, ...rest }) => (
 FadingRoute.propTypes = {
   component: PropTypes.any
 };
+//========================
 
+//========================
+// LOAD DATA for SERVER RENDERING
+// We use this config to tell the server
+// what actions to fire for async data-fetching before rendering a path
+// This is handy for server rendering and redux store pre-filling
+// for a particular route
+// It is repetitive, but it helps us use the "render" and "children" props on
+// Route for the client, which are handy for transitions and selective renders
+// while also using route config for the server. Route config is limiting on the client
+// side, but is powerful on the server, because we can pass custom fields like "loadData"
+// which is not possible with <Route/> for the server
 export const loadData = [
   {
     path: "/github-users",
@@ -111,7 +137,12 @@ export const loadData = [
     loadData: LoadGithubUsers
   }
 ];
+//========================
 
+//========================
+// APP
+// This is the app component which is universal and can be rendered on the client
+// and the server
 export default class App extends Component {
   render() {
     return (
@@ -154,3 +185,4 @@ export default class App extends Component {
     );
   }
 }
+//========================

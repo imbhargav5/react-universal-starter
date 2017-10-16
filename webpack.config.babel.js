@@ -81,7 +81,18 @@ export default env => {
           }
         ])
       ),
-      ifProd(new UglifyJSPlugin())
+      ifProd(
+        new UglifyJSPlugin({
+          sourceMap: true
+        })
+      ),
+      ifProd(
+        new webpack.DefinePlugin({
+          "process.env": {
+            NODE_ENV: JSON.stringify("production")
+          }
+        })
+      )
     ])
   };
 };

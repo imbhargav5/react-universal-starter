@@ -32,13 +32,15 @@
     "npm-run-all": "^4.0.2",
     "react-hot-loader": "next",
     "rimraf": "^2.6.1",
-    "webpack": "^3.5.4",
+    "uglifyjs-webpack-plugin": "^1.0.0-beta.3",
+    "webpack": "^3.7.1",
     "webpack-dev-server": "^2.7.1"
   },
   "name": "react-universal-starter",
   "version": "1.0.0",
   "main": "index.js",
-  "author": "Bhargav Ponnapalli <bhargavponnapalli.5@gmail.com> (https://github.com/imbhargav5)",
+  "author":
+    "Bhargav Ponnapalli <bhargavponnapalli.5@gmail.com> (https://github.com/imbhargav5)",
   "license": "MIT",
   "scripts": {
     "add-contributor": "all-contributors add",
@@ -50,7 +52,8 @@
     "clean": "rimraf tmp lib",
     "dev": "npm-run-all --parallel dev:*",
     "dev:client": "cross-env NODE_ENV=development webpack-dev-server --env.dev",
-    "dev:server": "cross-env NODE_ENV=development nodemon --config nodemon.json src/server",
+    "dev:server":
+      "cross-env NODE_ENV=development nodemon --config nodemon.json src/server",
     "start": "cross-env NODE_ENV=production node tmp/lib/server",
     "deploy": "now --public"
   }

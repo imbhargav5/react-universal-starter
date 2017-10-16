@@ -3,6 +3,7 @@ import path from "path";
 import HtmlWebpackPugPlugin from "html-webpack-pug-plugin";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import CopyWebpackPlugin from "copy-webpack-plugin";
+import UglifyJSPlugin from "uglifyjs-webpack-plugin";
 
 export default env => {
   // utilities to add features based on env
@@ -79,7 +80,8 @@ export default env => {
             from: "static"
           }
         ])
-      )
+      ),
+      ifProd(new UglifyJSPlugin())
     ])
   };
 };

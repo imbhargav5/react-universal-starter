@@ -23,7 +23,7 @@ class Home extends Component {
             alt="React"
             width="auto"
             height="90"
-            src="https://facebook.github.io/react/img/logo.svg"
+            src="http://blog-assets.risingstack.com/2016/Jan/react_best_practices-1453211146748.png"
           />{" "}
           <img
             width="auto"

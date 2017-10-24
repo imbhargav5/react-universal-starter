@@ -4,6 +4,7 @@ import HtmlWebpackPugPlugin from "html-webpack-pug-plugin";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import CopyWebpackPlugin from "copy-webpack-plugin";
 import UglifyJSPlugin from "uglifyjs-webpack-plugin";
+import SWPrecacheWebpackPlugin from "sw-precache-webpack-plugin";
 
 export default env => {
   // utilities to add features based on env
@@ -14,6 +15,8 @@ export default env => {
   const ifProd = entity => addEntity(env.prod, entity);
   const ifDev = entity => addEntity(env.dev, entity);
   const removeEmpty = array => array.filter(i => !!i);
+
+  const PUBLIC_PATH = env.prod ? "/" : "http://localhost:8080/";
 
   // set contentBase
   const contentBase = env.prod
@@ -29,13 +32,13 @@ export default env => {
     ]),
     output: {
       path: path.join(__dirname, "tmp/static"),
-      publicPath: env.prod ? "/" : "http://localhost:8080/",
+      publicPath: PUBLIC_PATH,
       filename: env.prod ? "[name].[chunkhash].js" : "[name].bundle.js"
     },
     devtool: env.dev ? "eval-source-map" : "eval",
     devServer: {
       hot: true,
-      publicPath: "http://localhost:8080/",
+      publicPath: PUBLIC_PATH,
       contentBase: contentBase,
       historyApiFallback: true,
       headers: { "Access-Control-Allow-Origin": "*" }
@@ -92,7 +95,15 @@ export default env => {
             NODE_ENV: JSON.stringify("production")
           }
         })
-      )
+      ),
+      new SWPrecacheWebpackPlugin({
+        cacheId: "react-universal-starter",
+        dontCacheBustUrlsMatching: /\.\w{8}\./,
+        filename: "service-worker.js",
+        minify: true,
+        navigateFallback: PUBLIC_PATH + "index.html",
+        staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/]
+      })
     ])
   };
 };

@@ -5,6 +5,7 @@ import { hydrate as render } from "react-dom";
 import App from "./app";
 import { Provider } from "react-redux";
 import store from "./store";
+import registerServiceWorker from "./registerServiceWorker";
 
 render(
   <Provider store={store}>
@@ -14,6 +15,8 @@ render(
   </Provider>,
   document.getElementById("app")
 );
+
+registerServiceWorker();
 
 // Hot Module Replacement API
 if (module.hot) {

@@ -38,9 +38,6 @@
     "no-console":[0],
     "no-mixed-spaces-and-tabs":[0],
   },
-    "ecmaFeatures": {
-          "jsx": true
-  },
    "plugins": [
     "react"
   ]

@@ -49,6 +49,7 @@ The app should be running on `http://localhost:8888/`
 To run app in **production** mode
 
 ```bash
+npm build
 npm start
 ```
 The app should be running on `http://localhost:8888/`

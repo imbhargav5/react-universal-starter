@@ -61,6 +61,21 @@ To clean and rebuild
 ```bash
 npm run build
 ```
+
+## Available build scripts
+
+|`npm run <script>`|Description|
+|------------------|-----------|
+|`prebuild`|Cleans up previous build folders.|
+|`build:client`|Compiles client in production mode.|
+|`build:server`|Compiles server in production mode.|
+|`build`|Compiles client and server in production mode.|
+|`dev:client`|Runs client in development mode|
+|`dev:server`|Runs server in development mode|
+|`dev`|Runs client and server in development mode|
+|`start`|Start app in production mode.|
+|`deploy`|Deploy(already compiled) app to www through a temporary now.sh url. If now is not already installed, Run `npm install -g now`.|
+
 ## Contributors
 
 Thanks goes to these wonderful people ([emoji key](https://github.com/kentcdodds/all-contributors#emoji-key)):

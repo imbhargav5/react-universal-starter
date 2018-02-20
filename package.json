@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "babel-preset-stage-0": "^6.24.1",
     "express": "^4.15.4",
     "isomorphic-fetch": "^2.2.1",
     "prop-types": "^15.5.10",
@@ -22,6 +21,7 @@
     "babel-plugin-dynamic-import-webpack": "^1.0.1",
     "babel-preset-env": "^1.6.0",
     "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
     "babel-register": "^6.24.1",
     "copy-webpack-plugin": "^4.0.1",
     "cross-env": "^5.0.5",

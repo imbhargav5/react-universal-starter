@@ -56,9 +56,11 @@
     "dev:server":
       "cross-env NODE_ENV=development nodemon --config nodemon.json src/server",
     "start": "cross-env NODE_ENV=production node tmp/lib/server",
-    "deploy": "now --public"
+    "deploy":
+      "now --public && now alias && now rm react-universal-starter --safe --yes"
   },
   "now": {
-    "name": "react-universal-starter"
+    "name": "react-universal-starter",
+    "alias": "react-universal-starter"
   }
 }

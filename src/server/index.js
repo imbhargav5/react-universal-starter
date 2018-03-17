@@ -13,7 +13,6 @@ import { ServerStyleSheet } from "styled-components";
 import App, { loadData } from "../client/app";
 import createStore from "../client/store/createStore";
 import rootReducer from "../client/reducers";
-import webpackConfig from "../../webpack.config.babel.js";
 
 // Environment variables
 const isDevelopment = process.env.NODE_ENV === "development";
@@ -28,6 +27,7 @@ const port = process.env.PORT || 8888;
 const staticPath = path.join(__dirname, "../../", "static");
 
 if (isDevelopment) {
+  const webpackConfig = require("../../webpack.config.babel.js").default;
   const compiler = webpack(webpackConfig);
   app.use(
     webpackDevMiddleware(compiler, {

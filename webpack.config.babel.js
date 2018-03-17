@@ -8,7 +8,6 @@ import SWPrecacheWebpackPlugin from "sw-precache-webpack-plugin";
 
 export default env => {
   // utilities to add features based on env
-
   const addEntity = (add, entity) => {
     return add ? entity : undefined;
   };
@@ -32,13 +31,11 @@ export default env => {
     ]),
     output: {
       path: path.join(__dirname, "tmp/static"),
-      publicPath: PUBLIC_PATH,
       filename: env.prod ? "[name].[chunkhash].js" : "[name].bundle.js"
     },
-    devtool: env.dev ? "eval-source-map" : "eval",
+    devtool: env.dev ? "eval-source-map" : "source-map",
     devServer: {
       hot: true,
-      publicPath: PUBLIC_PATH,
       contentBase: contentBase,
       historyApiFallback: true,
       headers: { "Access-Control-Allow-Origin": "*" }

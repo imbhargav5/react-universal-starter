@@ -1,12 +1,11 @@
 {
   "dependencies": {
-    "babel-preset-stage-0": "^6.24.1",
     "express": "^4.15.4",
     "isomorphic-fetch": "^2.2.1",
     "prop-types": "^15.5.10",
     "pug": "^2.0.0-rc.3",
-    "react": "16.0.0",
-    "react-dom": "16.0.0",
+    "react": "16.2.0",
+    "react-dom": "16.2.0",
     "react-redux": "^5.0.6",
     "react-router": "4.2.0",
     "react-router-dom": "4.2.2",
@@ -22,6 +21,7 @@
     "babel-plugin-dynamic-import-webpack": "^1.0.1",
     "babel-preset-env": "^1.6.0",
     "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
     "babel-register": "^6.24.1",
     "copy-webpack-plugin": "^4.0.1",
     "cross-env": "^5.0.5",
@@ -40,25 +40,24 @@
   "name": "react-universal-starter",
   "version": "1.0.0",
   "main": "index.js",
-  "author":
-    "Bhargav Ponnapalli <bhargavponnapalli.5@gmail.com> (https://github.com/imbhargav5)",
+  "author": "Bhargav Ponnapalli <bhargavponnapalli.5@gmail.com> (https://github.com/imbhargav5)",
   "license": "MIT",
   "scripts": {
     "add-contributor": "all-contributors add",
     "generate-contributor": "all-contributors generate",
     "build": "npm run build:server && npm run build:client",
-    "build:client": "cross-env NODE_ENV=production webpack --env.prod",
-    "build:server": "cross-env NODE_ENV=production babel src --out-dir tmp/lib",
+    "build:client": "NODE_ENV=production webpack --env.prod",
+    "build:server": "NODE_ENV=production babel src --out-dir tmp/lib",
     "prebuild": "npm run clean",
     "clean": "rimraf tmp lib",
     "dev": "npm-run-all --parallel dev:*",
-    "dev:client": "cross-env NODE_ENV=development webpack-dev-server --env.dev",
-    "dev:server":
-      "cross-env NODE_ENV=development nodemon --config nodemon.json src/server",
-    "start": "cross-env NODE_ENV=production node tmp/lib/server",
-    "deploy": "now --public"
+    "dev:client": "NODE_ENV=development webpack-dev-server --env.dev",
+    "dev:server": "NODE_ENV=development nodemon --config nodemon.json src/server",
+    "start": "NODE_ENV=production node tmp/lib/server",
+    "deploy": "now --public && now alias && now rm react-universal-starter --safe --yes"
   },
   "now": {
-    "name": "react-universal-starter"
+    "name": "react-universal-starter",
+    "alias": "react-universal-starter"
   }
 }

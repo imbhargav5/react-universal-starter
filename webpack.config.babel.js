@@ -6,7 +6,11 @@ import CopyWebpackPlugin from "copy-webpack-plugin";
 import UglifyJSPlugin from "uglifyjs-webpack-plugin";
 import SWPrecacheWebpackPlugin from "sw-precache-webpack-plugin";
 
-export default env => {
+export default () => {
+  const env = {
+    prod: process.env.NODE_ENV !== "development",
+    dev: process.env.NODE_ENV === "development"
+  };
   // utilities to add features based on env
   const addEntity = (add, entity) => {
     return add ? entity : undefined;
@@ -60,20 +64,6 @@ export default env => {
         })
       ),
       ifProd(new HtmlWebpackPugPlugin()),
-      new webpack.optimize.CommonsChunkPlugin({
-        name: "vendor",
-        minChunks: function(module) {
-          // this assumes your vendor imports exist in the node_modules directory
-          return (
-            module.context && module.context.indexOf("node_modules") !== -1
-          );
-        }
-      }),
-      //CommonChunksPlugin will now extract all the common modules from vendor and main bundles
-      new webpack.optimize.CommonsChunkPlugin({
-        name: "manifest" //But since there are no more common modules between them we end up with just the runtime code included in the manifest file
-      }),
-      new webpack.optimize.ModuleConcatenationPlugin(),
       ifProd(
         new CopyWebpackPlugin([
           {
@@ -86,13 +76,6 @@ export default env => {
           sourceMap: true
         })
       ),
-      ifProd(
-        new webpack.DefinePlugin({
-          "process.env": {
-            NODE_ENV: JSON.stringify("production")
-          }
-        })
-      ),
       new SWPrecacheWebpackPlugin({
         cacheId: "react-universal-starter",
         dontCacheBustUrlsMatching: /\.\w{8}\./,
@@ -101,6 +84,9 @@ export default env => {
         navigateFallback: PUBLIC_PATH + "index.html",
         staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/]
       })
-    ])
+    ]),
+    optimization: {
+      occurrenceOrder: true
+    }
   };
 };

@@ -47,19 +47,20 @@ const BuiltWith = styled.p`
   margin-bottom: 0;
 `;
 
-const Header = ({ className }) =>
+const Header = ({ className }) => (
   <Outer className={className}>
     <Container>
       <Box>
         <Inner>
-          <Heading> React Starter </Heading>
+          <Heading> React Starter</Heading>
           <Subheading>For the ever evolving front end stack</Subheading>
         </Inner>
         <Navbar />
       </Box>
       <BuiltWith>React 16+, React Router 4+, Webpack 3+</BuiltWith>
     </Container>
-  </Outer>;
+  </Outer>
+);
 Header.propTypes = {
   className: PropTypes.string
 };

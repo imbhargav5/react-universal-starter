@@ -2,7 +2,7 @@
   "verbose": true,
   "ignore": ["tmp"],
   "execMap": {
-    "js": "babel-node"
+    "js": "-r @babel/register"
   },
-  "watch": ["src"]
+  "watch": ["src/server"]
 }

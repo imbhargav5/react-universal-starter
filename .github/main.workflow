@@ -30,10 +30,9 @@ action "alias" {
   secrets = ["ZEIT_TOKEN"]
 }
 
-
 # Requires now.json in repository
 action "release-master" {
-  needs = ["master-branch-filter","alias"]
+  needs = ["master-branch-filter", "alias"]
   uses = "actions/zeit-now@master"
   secrets = ["ZEIT_TOKEN"]
   args = "alias --team imbhargav5"

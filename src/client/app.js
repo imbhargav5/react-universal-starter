@@ -12,11 +12,11 @@ import GithubUsers from "./containers/GithubUsers";
 import NotFoundPage from "./containers/NotFound";
 import ServerError from "./containers/ServerError";
 import { LoadGithubUsers } from "./dataloading";
-import styled, { injectGlobal } from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 
 //========================
 // GLOBAL STYLES
-injectGlobal`
+const GlobalStyles = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Montserrat');
   *{
     box-sizing: border-box;
@@ -46,7 +46,9 @@ const Sidebar = styled.div`
   flex-direction: column;
   justify-content: space-between;
 `;
-const StyledHeader = styled(Header)`align-content: flex-start;`;
+const StyledHeader = styled(Header)`
+  align-content: flex-start;
+`;
 
 const StyledFooter = styled(Footer)`
   align-content: flex-end;
@@ -147,6 +149,7 @@ export default class App extends Component {
   render() {
     return (
       <Root>
+        <GlobalStyles />
         <RootMain>
           <Sidebar>
             <StyledHeader />

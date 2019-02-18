@@ -16,7 +16,9 @@ const User = styled.a`
   margin-bottom: 1em;
 `;
 
-const UserName = styled.p`margin-top: 0.5em;`;
+const UserName = styled.p`
+  margin-top: 0.5em;
+`;
 
 class GithubUsers extends Component {
   static propTypes = {

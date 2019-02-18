@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 
-const Heading = styled.h1`font-size: 3em;`;
+const Heading = styled.h1`
+  font-size: 3em;
+`;
 const Subheading = styled.h2`
   font-size: 2em;
   padding: 1em 0;
@@ -32,7 +34,7 @@ class Home extends Component {
             src="https://raw.githubusercontent.com/reactjs/redux/master/logo/logo.png"
           />{" "}
           <img
-            src="https://webpack.js.org/6bc5d8cf78d442a984e70195db059b69.svg"
+            src="https://raw.githubusercontent.com/webpack/media/master/logo/icon-square-big.png"
             alt="webpack"
             width="auto"
             height="90"

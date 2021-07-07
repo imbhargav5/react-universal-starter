@@ -30,7 +30,7 @@ This project comes with the following features
 ## Installation
 
 ```bash
-git clone git@github.com:imbhargav5/react-universal-starter.git
+git clone https://github.com/imbhargav5/react-universal-starter
 cd react-universal-starter
 npm install
 ```
